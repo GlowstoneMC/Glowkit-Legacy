@@ -27,9 +27,9 @@ public class EntityEquipEvent extends EntityPickupItemEvent {
     }
 
     /**
-     * Gets the raw slot to equip the item.
+     * Gets the raw slot the item was equipped into.
      *
-     * @return raw slot to equip the item.
+     * @return the raw slot where the item was equipped
      */
     public int getEquipSlot() {
         return equipSlot;

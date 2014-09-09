@@ -4,24 +4,24 @@ package org.bukkit.entity;
  * Represents an arrow.
  */
 public interface Arrow extends Projectile {
-	/**
-	 * Represents different states to check for when a player tries to pickup 
-     * an arrow
-	 */
-	public enum Pickup {
-		/**
-		 * Arrow can always be picked up
-		 */
-		ALL,
-		/**
-		 * Arrow can be picked up by a player in creative mode
-		 */
-		CREATIVE,
-		/**
-		 * Arrow can never be picked up
-		 */
-		NONE
-	}
+    /**
+     * Represents the different behaviors a player can encounter when trying
+     * to pickup an arrow entity.
+     */
+    public enum PickupBehavior {
+        /**
+         * Arrow can always be picked up
+         */
+        ALLLOW,
+        /**
+         * Arrow can be picked up by a player only in creative mode
+         */
+        CREATIVE_MODE,
+        /**
+         * Arrow can never be picked up
+         */
+        DENY
+    }
 
     /**
      * Gets the knockback strength for an arrow, which is the
@@ -59,16 +59,17 @@ public interface Arrow extends Projectile {
     public void setCritical(boolean critical);
 
     /**
-     * Gets required condition for picking up this arrow
+     * Gets the behavior this arrow will exert when attempted to be picked
+     * up by a player.
      *
-     * @return condition as defined in Arrow.Pickup
+     * @return the behavior exerted upon pickup
      */
-    public Arrow.Pickup getPickup();
+    public PickupBehavior getPickup();
 
     /**
-     * Sets the condition required for picking up this arrow
+     * Sets the behavior this arrow will extert when picked up by a player.
      *
-     * @param canPickup condition for allowing pickup
+     * @param pickup the new pickup behavior
      */
-    public void setPickup(Arrow.Pickup pickup);
+    public void setPickup(PickupBehavior pickup);
 }

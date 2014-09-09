@@ -35,7 +35,7 @@ public class FoodLevelChangeEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Get the food being eaten in this event.
+     * Gets the food being eaten in this event.
      *
      * @return the food eaten by the entity
      */
@@ -112,7 +112,8 @@ public class FoodLevelChangeEvent extends EntityEvent implements Cancellable {
 
     /**
      * Sets the resultant exhaustion level that the entity involved in this event
-     * should be set to
+     * should be set to. Exhaustion will be clamped to 0.0F - 40.0F before being
+     * set within the event.
      *
      * @param exhaustion the resultant exhaustion level that the entity involved in this
      *     event should be set to

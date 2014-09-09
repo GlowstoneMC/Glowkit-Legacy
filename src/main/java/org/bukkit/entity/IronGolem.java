@@ -28,11 +28,10 @@ public interface IronGolem extends Golem {
     public boolean isHoldingFlower();
 
     /**
-     * Sets whether this iron golem holds flower or not. 
-     * Iron golem holds flower only for 400 ticks.
+     * Sets whether this iron golem holds flower or not. The flower will
+     * remain in the entity's hand for a limited time.
      *
-     * @param holdingFlower true if you want to set the iron golem to hold
-     *     flower, false if you want it to not hold anything.
+     * @param holdingFlower true for holding a flower, false otherwise
      */
     public void setHoldingFlower(boolean holdingFlower);
 }

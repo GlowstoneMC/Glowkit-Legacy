@@ -21,9 +21,9 @@ public class EntityPickupItemEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the ItemDrop the entity picked up
+     * Gets the Item the entity picked up
      *
-     * @return Item
+     * @return the Item entity picked up
      */
     public Item getItem() {
         return item;
