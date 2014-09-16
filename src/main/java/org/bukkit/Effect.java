@@ -62,7 +62,7 @@ public enum Effect {
     /**
      * Sound of a Wither spawning.
      */
-    WITHER_SPAWN(1013, Type.SOUND),
+    WITHER_SPAWN(1013, Type.SOUND, true),
     /**
      * Sound of a Wither firing.
      */
@@ -135,16 +135,26 @@ public enum Effect {
     private final int id;
     private final Type type;
     private final Class<?> data;
+    private final boolean distanceIgnored;
     private static final Map<Integer, Effect> BY_ID = Maps.newHashMap();
 
     Effect(int id, Type type) {
         this(id,type,null);
     }
 
+    Effect(int id, Type type, boolean distanceIgnored) {
+        this(id, type, null, distanceIgnored);
+    }
+
     Effect(int id, Type type, Class<?> data) {
+        this(id, type, data, false);
+    }
+
+    Effect(int id, Type type, Class<?> data, boolean distanceIgnored) {
         this.id = id;
         this.type = type;
         this.data = data;
+        this.distanceIgnored = distanceIgnored;
     }
 
     /**
@@ -171,6 +181,13 @@ public enum Effect {
      */
     public Class<?> getData() {
         return this.data;
+    }
+
+    /**
+     * @return True if effect ignores distance
+     */
+    public boolean isDistanceIgnored() {
+        return this.distanceIgnored;
     }
 
     /**
