@@ -86,6 +86,22 @@ public interface Objective {
     DisplaySlot getDisplaySlot() throws IllegalStateException;
 
     /**
+     *
+     * @return
+     * @throws IllegalStateException if this objective has been unregistered
+     * @since 1.8
+     */
+    RenderType getType() throws IllegalStateException;
+
+    /**
+     *
+     * @param type
+     * @throws IllegalStateException if this objective has been unregistered
+     * @since 1.8
+     */
+    void setType(RenderType type) throws IllegalStateException;
+
+    /**
      * Gets a player's Score for an Objective on this Scoreboard
      *
      * @param player Player for the Score
