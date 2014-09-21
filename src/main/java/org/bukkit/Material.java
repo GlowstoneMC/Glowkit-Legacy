@@ -417,6 +417,7 @@ public enum Material {
     private final static Map<String, Material> BY_NAME = Maps.newHashMap();
     private final int maxStack;
     private final short durability;
+    private float blastResistance = -1;
 
     private Material(final int id) {
         this(id, 64);
@@ -450,6 +451,19 @@ public enum Material {
         } catch (SecurityException ex) {
             throw new AssertionError(ex);
         }
+    }
+
+    /**
+     * Returns the blast-resistance of this Material.
+     *
+     * @return The blast resistance or -1 if unknown.
+     */
+    public float getBlastResistance() {
+        return blastResistance;
+    }
+
+    private void setBlastResistance(float blastResistance) {
+        this.blastResistance = blastResistance;
     }
 
     /**
@@ -634,6 +648,74 @@ public enum Material {
             }
             BY_NAME.put(material.name(), material);
         }
+
+        setBlastResistances();
+    }
+
+    private static void setBlastResistances() {
+        int unbreakable = 18000000;
+        BEDROCK.setBlastResistance(unbreakable);
+        COMMAND.setBlastResistance(unbreakable);
+        ENDER_PORTAL_FRAME.setBlastResistance(unbreakable);
+        ENDER_PORTAL.setBlastResistance(unbreakable);
+        BARRIER.setBlastResistance(unbreakable);
+        ANVIL.setBlastResistance(6000);
+        ENCHANTMENT_TABLE.setBlastResistance(6000);
+        OBSIDIAN.setBlastResistance(6000);
+        ENDER_CHEST.setBlastResistance(3000);
+        STATIONARY_LAVA.setBlastResistance(500);
+        STATIONARY_WATER.setBlastResistance(500);
+        WATER.setBlastResistance(500);
+        DRAGON_EGG.setBlastResistance(45);
+        ENDER_STONE.setBlastResistance(45);
+
+        DIAMOND_BLOCK.setBlastResistance(30);
+        EMERALD_BLOCK.setBlastResistance(30);
+        GOLD_BLOCK.setBlastResistance(30);
+        IRON_BLOCK.setBlastResistance(30);
+        REDSTONE_BLOCK.setBlastResistance(30);
+        BRICK.setBlastResistance(30);
+        BRICK_STAIRS.setBlastResistance(30);
+        HARD_CLAY.setBlastResistance(30);
+        COBBLESTONE.setBlastResistance(30);
+        COBBLESTONE_STAIRS.setBlastResistance(30);
+        COBBLE_WALL.setBlastResistance(30);
+        IRON_FENCE.setBlastResistance(30);
+        JUKEBOX.setBlastResistance(30);
+        MOSSY_COBBLESTONE.setBlastResistance(30);
+        NETHER_BRICK.setBlastResistance(30);
+        NETHER_FENCE.setBlastResistance(30);
+        NETHER_BRICK_STAIRS.setBlastResistance(30);
+        STONE.setBlastResistance(30);
+        SMOOTH_BRICK.setBlastResistance(30);
+        SMOOTH_STAIRS.setBlastResistance(30);
+        STEP.setBlastResistance(30);
+        DOUBLE_STEP.setBlastResistance(30);
+        IRON_DOOR_BLOCK.setBlastResistance(25);
+        MOB_SPAWNER.setBlastResistance(25);
+        WEB.setBlastResistance(20);
+        DISPENSER.setBlastResistance(17.5f);
+        DROPPER.setBlastResistance(17.5f);
+        FURNACE.setBlastResistance(17.5f);
+        BEACON.setBlastResistance(15);
+        COAL_ORE.setBlastResistance(15);
+        COCOA.setBlastResistance(15);
+        DIAMOND_ORE.setBlastResistance(15);
+        EMERALD_ORE.setBlastResistance(15);
+        FENCE.setBlastResistance(15);
+        ACACIA_FENCE.setBlastResistance(15);
+        BIRCH_FENCE.setBlastResistance(15);
+        DARK_OAK_FENCE.setBlastResistance(15);
+        JUNGLE_FENCE.setBlastResistance(15);
+        SPRUCE_FENCE.setBlastResistance(15);
+        FENCE_GATE.setBlastResistance(15);
+        ACACIA_FENCE_GATE.setBlastResistance(15);
+        BIRCH_FENCE_GATE.setBlastResistance(15);
+        DARK_OAK_FENCE_GATE.setBlastResistance(15);
+        JUNGLE_FENCE_GATE.setBlastResistance(15);
+        SPRUCE_FENCE_GATE.setBlastResistance(15);
+        GOLD_ORE.setBlastResistance(15);
+        HOPPER.setBlastResistance(15);
     }
 
     /**
