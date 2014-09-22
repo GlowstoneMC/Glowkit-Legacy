@@ -2,6 +2,7 @@ package org.bukkit.scoreboard;
 
 import java.util.Set;
 
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.potion.PotionEffectType;
 
@@ -109,6 +110,38 @@ public interface Team {
      * @throws IllegalStateException if this team has been unregistered
      */
     void setCanSeeFriendlyInvisibles(boolean enabled) throws IllegalStateException;
+
+    /**
+     *
+     * @return
+     * @throws IllegalStateException if this team has been unregistered
+     * @since 1.8
+     */
+    NametagVisibility getNametagVisibility() throws IllegalStateException;
+
+    /**
+     *
+     * @param visibility
+     * @throws IllegalStateException if this team has been unregistered
+     * @since 1.8
+     */
+    void setNametagVisibility(NametagVisibility visibility) throws IllegalStateException;
+
+    /**
+     *
+     * @return
+     * @throws IllegalStateException if this team has been unregistered
+     * @since 1.8
+     */
+    ChatColor getColor() throws IllegalStateException;
+
+    /**
+     *
+     * @param color
+     * @throws IllegalStateException if this team has been unregistered
+     * @since 1.8
+     */
+    void setColor(ChatColor color) throws IllegalStateException;
 
     /**
      * Gets the Set of players on the team
