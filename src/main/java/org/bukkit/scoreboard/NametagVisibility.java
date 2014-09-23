@@ -7,11 +7,31 @@ package org.bukkit.scoreboard;
  */
 public enum NametagVisibility {
 
-    ALWAYS,
+    ALWAYS("always"),
 
-    NEVER,
+    NEVER("never"),
 
-    HIDE_FOR_OTHER_TEAMS,
+    HIDE_FOR_OTHER_TEAMS("hideForOtherTeams"),
 
-    HIDE_FOR_OWN_TEAM;
+    HIDE_FOR_OWN_TEAM("hideForOwnTeam");
+
+
+    private final String value;
+
+    private NametagVisibility(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public static NametagVisibility get(String value) {
+        for (NametagVisibility n: values()) {
+            if (n.value == value) {
+                return n;
+            }
+        }
+        return null;
+    }
 }
