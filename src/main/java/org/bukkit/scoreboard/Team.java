@@ -204,4 +204,23 @@ public interface Team {
      * @throws IllegalStateException if this team has been unregistered
      */
     boolean hasPlayer(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
+
+    /**
+     * Set the visiblity of death messages for players on this team.
+     *
+     * @param visibility The visiblity of death messages
+     * @throws IllegalArgumentException if the visibility is null
+     * @throws IllegalStateException if this team has been unregistered
+     * @since 1.8
+     */
+    void setDeathMessageVisibility(NametagVisibility visibility) throws IllegalStateException, IllegalArgumentException;
+
+    /**
+     * Get the visiblity of death messages for players on this team.
+     *
+     * @return visibility The visiblity of death messages
+     * @throws IllegalStateException if this team has been unregistered
+     * @since 1.8
+     */
+    NametagVisibility getDeathMessageVisibility() throws IllegalStateException;
 }
