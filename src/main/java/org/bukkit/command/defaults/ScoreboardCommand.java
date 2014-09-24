@@ -16,6 +16,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
@@ -100,7 +101,7 @@ public class ScoreboardCommand extends VanillaCommand {
                     return false;
                 }
                 String name = args[2];
-                String criteria = args[3];
+                Criteria criteria = Criteria.get(args[3]);
 
                 if (criteria == null) {
                     sender.sendMessage(ChatColor.RED + "Invalid objective criteria type. Valid types are: " + stringCollectionToString(OBJECTIVES_CRITERIA));
