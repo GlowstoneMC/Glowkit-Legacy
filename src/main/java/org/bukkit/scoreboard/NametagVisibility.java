@@ -28,7 +28,7 @@ public enum NametagVisibility {
 
     public static NametagVisibility get(String value) {
         for (NametagVisibility n: values()) {
-            if (n.value == value) {
+            if (n.value.equalsIgnoreCase(value)) {
                 return n;
             }
         }

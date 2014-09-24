@@ -22,7 +22,7 @@ public enum Criteria {
 
     public static Criteria get(String value) {
         for (Criteria c: values()) {
-            if (c.value == value) {
+            if (c.value.equalsIgnoreCase(value)) {
                 return c;
             }
         }
