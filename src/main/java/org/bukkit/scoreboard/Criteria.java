@@ -7,7 +7,8 @@ public enum Criteria {
     HEALTH("health"),
     PLAYER_KILLS("playerKillCount"),
     TOTAL_KILLS("totalKillCount"),
-    DEATHS("deathCount");
+    DEATHS("deathCount"),
+    TRIGGER("trigger");
 
     private final String value;
 
