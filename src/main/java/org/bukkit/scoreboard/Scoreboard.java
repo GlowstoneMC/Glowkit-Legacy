@@ -20,7 +20,7 @@ public interface Scoreboard {
      * @throws IllegalArgumentException if an objective by that name already
      *     exists
      */
-    Objective registerNewObjective(String name, String criteria) throws IllegalArgumentException;
+    Objective registerNewObjective(String name, Criteria criteria) throws IllegalArgumentException;
 
     /**
      * Gets an Objective on this Scoreboard by name
@@ -37,7 +37,7 @@ public interface Scoreboard {
      * @param criteria Criteria to search by
      * @return an immutable set of Objectives using the specified Criteria
      */
-    Set<Objective> getObjectivesByCriteria(String criteria) throws IllegalArgumentException;
+    Set<Objective> getObjectivesByCriteria(Criteria criteria) throws IllegalArgumentException;
 
     /**
      * Gets all Objectives on this Scoreboard

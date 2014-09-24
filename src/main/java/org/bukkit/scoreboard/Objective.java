@@ -42,7 +42,7 @@ public interface Objective {
      * @return this objective's criteria
      * @throws IllegalStateException if this objective has been unregistered
      */
-    String getCriteria() throws IllegalStateException;
+    Criteria getCriteria() throws IllegalStateException;
 
     /**
      * Gets if the objective's scores can be modified directly by a plugin.
