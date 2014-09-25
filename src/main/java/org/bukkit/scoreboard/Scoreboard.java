@@ -13,14 +13,14 @@ public interface Scoreboard {
      * Registers an Objective on this Scoreboard
      *
      * @param name Name of the Objective
-     * @param criteria Criteria for the Objective
+     * @param critera Criteria for the Objective
      * @return The registered Objective
      * @throws IllegalArgumentException if name is null
      * @throws IllegalArgumentException if criteria is null
      * @throws IllegalArgumentException if an objective by that name already
      *     exists
      */
-    Objective registerNewObjective(String name, Criteria criteria) throws IllegalArgumentException;
+    Objective registerNewObjective(String name, String criteria) throws IllegalArgumentException;
 
     /**
      * Gets an Objective on this Scoreboard by name
@@ -37,7 +37,7 @@ public interface Scoreboard {
      * @param criteria Criteria to search by
      * @return an immutable set of Objectives using the specified Criteria
      */
-    Set<Objective> getObjectivesByCriteria(Criteria criteria) throws IllegalArgumentException;
+    Set<Objective> getObjectivesByCriteria(String criteria) throws IllegalArgumentException;
 
     /**
      * Gets all Objectives on this Scoreboard

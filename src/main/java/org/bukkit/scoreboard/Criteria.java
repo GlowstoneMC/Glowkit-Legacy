@@ -3,29 +3,20 @@ package org.bukkit.scoreboard;
 /**
  * Criteria names which trigger an objective to be modified by actions in-game
  */
-public enum Criteria {
-    HEALTH("health"),
-    PLAYER_KILLS("playerKillCount"),
-    TOTAL_KILLS("totalKillCount"),
-    DEATHS("deathCount"),
-    TRIGGER("trigger");
+public class Criteria {
+    public static final String HEALTH;
+    public static final String PLAYER_KILLS;
+    public static final String TOTAL_KILLS;
+    public static final String DEATHS;
+    public static final String TRIGGER;
 
-    private final String value;
-
-    private Criteria(String value) {
-        this.value = value;
+    static {
+        HEALTH="health";
+        PLAYER_KILLS="playerKillCount";
+        TOTAL_KILLS="totalKillCount";
+        DEATHS="deathCount";
+        TRIGGER="trigger";
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public static Criteria get(String value) {
-        for (Criteria c: values()) {
-            if (c.value.equalsIgnoreCase(value)) {
-                return c;
-            }
-        }
-        return null;
-    }
+    private Criteria() {}
 }

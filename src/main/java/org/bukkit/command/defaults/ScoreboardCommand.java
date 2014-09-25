@@ -101,7 +101,13 @@ public class ScoreboardCommand extends VanillaCommand {
                     return false;
                 }
                 String name = args[2];
-                Criteria criteria = Criteria.get(args[3]);
+                String criteria = null;
+                for (String crit: OBJECTIVES_CRITERIA) {
+                    if (args[3].equalsIgnoreCase(crit)) {
+                        criteria = args[3];
+                        break;
+                    }
+                }
 
                 if (criteria == null) {
                     sender.sendMessage(ChatColor.RED + "Invalid objective criteria type. Valid types are: " + stringCollectionToString(OBJECTIVES_CRITERIA));
