@@ -16,7 +16,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
@@ -562,7 +561,8 @@ public class ScoreboardCommand extends VanillaCommand {
             }
         }
         else {
-            max = Integer.MAX_VALUE;LEL IM A NUBBY PRODERPER XD I SUCK        }
+            max = Integer.MAX_VALUE;
+        }
 
 
         if (min > max) {

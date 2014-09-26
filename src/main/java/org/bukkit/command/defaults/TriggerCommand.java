@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Criteria;
+import org.bukkit.scoreboard.Criterias;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.util.StringUtil;
@@ -90,7 +90,7 @@ public class TriggerCommand extends VanillaCommand{
             Player player = (Player) sender;
             if (args.length == 1) {
                 List<String> objectives = new ArrayList<String>();
-                for (Objective objective: Bukkit.getScoreboardManager().getMainScoreboard().getObjectivesByCriteria(Criteria.TRIGGER)) {
+                for (Objective objective: Bukkit.getScoreboardManager().getMainScoreboard().getObjectivesByCriteria(Criterias.TRIGGER)) {
                     objectives.add(objective.getName());
                 }
                 return objectives;

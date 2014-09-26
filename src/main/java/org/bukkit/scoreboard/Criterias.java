@@ -3,7 +3,7 @@ package org.bukkit.scoreboard;
 /**
  * Criteria names which trigger an objective to be modified by actions in-game
  */
-public class Criteria {
+public class Criterias {
     public static final String HEALTH;
     public static final String PLAYER_KILLS;
     public static final String TOTAL_KILLS;
@@ -18,5 +18,5 @@ public class Criteria {
         TRIGGER="trigger";
     }
 
-    private Criteria() {}
+    private Criterias() {}
 }

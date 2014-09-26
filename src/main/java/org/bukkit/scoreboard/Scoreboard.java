@@ -13,7 +13,7 @@ public interface Scoreboard {
      * Registers an Objective on this Scoreboard
      *
      * @param name Name of the Objective
-     * @param critera Criteria for the Objective
+     * @param criteria Criteria for the Objective
      * @return The registered Objective
      * @throws IllegalArgumentException if name is null
      * @throws IllegalArgumentException if criteria is null
