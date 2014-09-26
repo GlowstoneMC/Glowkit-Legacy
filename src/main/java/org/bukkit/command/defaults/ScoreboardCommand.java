@@ -174,7 +174,7 @@ public class ScoreboardCommand extends VanillaCommand {
             }
         } else if (args[0].equalsIgnoreCase("players")) {
             if (args.length == 1) {
-                sender.sendMessage(ChatColor.RED + "/scoreboard players <set|add|remove|reset|list|enable>");
+                sender.sendMessage(ChatColor.RED + "/scoreboard players <set|add|remove|reset|list|enable|test> ...");
                 return false;
             }
             if (args[1].equalsIgnoreCase("set") || args[1].equalsIgnoreCase("add") || args[1].equalsIgnoreCase("remove")) {
@@ -291,6 +291,35 @@ public class ScoreboardCommand extends VanillaCommand {
                 objective.getScore(args[2]).setLocked(false);
                 sender.sendMessage("Enabled trigger " + args[3] + " for " + args[2]);
                 return true;
+            } else if (args[1].equalsIgnoreCase("test")) {
+                if (args.length < 5) {
+                    sender.sendMessage("Usage: /scoreboard players test <player> <objective> <min> [max]");
+                    return false;
+                }
+
+                Objective objective = mainScoreboard.getObjective(args[3]);
+                if (objective == null) {
+                    sender.sendMessage("No objective was found by the name '" + args[3] + "'");
+                    return false;
+                }
+
+                String min_str = args[4];
+                String max_str = null;
+
+                if (args.length > 5) {
+                    max_str = args[5];
+                }
+
+                if (args[2] == "*") {
+                    for (String player: objective.getEntries()) {
+                        testImpl(sender, player, objective, min_str, max_str);
+                    }
+                    return true;
+                }
+
+                testImpl(sender, args[2], objective, min_str, max_str);
+
+
             }
         } else if (args[0].equalsIgnoreCase("teams")) {
             if (args.length == 1) {
@@ -505,6 +534,50 @@ public class ScoreboardCommand extends VanillaCommand {
             return false;
         }
         return true;
+    }
+
+    private boolean testImpl(CommandSender sender, String player, Objective objective, String min_str, String max_str) {
+        if (!objective.hasScore(player)) {
+            sender.sendMessage(ChatColor.RED + "No " + objective.getName() + " score for " + player + "found");
+            return false;
+        }
+        int value = objective.getScore(player).getScore();
+
+        int min;
+        int max;
+
+        if (min_str == "*") {
+            min = Integer.MIN_VALUE;
+        }
+        else {
+            min = Integer.valueOf(min_str);
+        }
+
+        if (max_str != null) {
+            if (max_str == "*") {
+                max = Integer.MAX_VALUE;
+
+            } else {
+                max = Integer.valueOf(max_str);
+            }
+        }
+        else {
+            max = Integer.MAX_VALUE;LEL IM A NUBBY PRODERPER XD I SUCK        }
+
+
+        if (min > max) {
+            sender.sendMessage(ChatColor.RED + "The number you have entered (" + max + ") is too small, it must be at least " + min);
+            return false;
+        }
+
+        if (min <= value && value <= max) {
+            sender.sendMessage("Score " + value + "is in range " + min + " to " + max);
+            return true;
+        }
+        else {
+            sender.sendMessage("Score " + value + "is NOT in range " + min + " to " + max);
+            return false;
+        }
     }
 
     @Override

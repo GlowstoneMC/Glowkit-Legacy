@@ -2,6 +2,9 @@ package org.bukkit.scoreboard;
 
 import org.bukkit.OfflinePlayer;
 
+import java.util.Map;
+import java.util.Set;
+
 /**
  * An objective on a scoreboard that can show scores specific to entries. This
  * objective is only relevant to the display of the associated {@link
@@ -123,4 +126,20 @@ public interface Objective {
      * @throws IllegalStateException if this objective has been unregistered
      */
     Score getScore(String entry) throws IllegalArgumentException, IllegalStateException;
+
+    /**
+     * Gets whether a score exists for the given entry
+     * @param entry The entry to check for
+     * @throws IllegalArgumentException if entry is null
+     * @throws IllegalStateException if this objective has been unregistered
+     */
+    boolean hasScore(String entry) throws IllegalArgumentException, IllegalStateException;
+
+
+    /**
+     * Gets a set of all entries for this objective.
+     * @return entries A set of entries.
+     * @throws IllegalStateException if this objective has been unregistered
+     */
+    Set<String> getEntries() throws IllegalStateException;
 }
