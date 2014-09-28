@@ -76,7 +76,7 @@ public class BannerPattern {
          * @param code 2/3 character pattern code
          * @return Banner pattern
          */
-        public Type getByCode(String code) {
+        public static Type getByCode(String code) {
             return BY_CODE.get(code);
         }
 
