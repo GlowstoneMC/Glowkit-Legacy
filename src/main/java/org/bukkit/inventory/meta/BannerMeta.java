@@ -13,7 +13,7 @@ public interface BannerMeta extends ItemMeta {
      * @param pattern Pattern to change to
      * @throws IllegalArgumentException If pattern is null
      */
-    public void setPattern(BannerPattern pattern) throws IllegalArgumentException;
+    public void setPattern(BannerPattern pattern) throws NullPointerException;
 
     /**
      * Gets the banner's pattern.

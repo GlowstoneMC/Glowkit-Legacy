@@ -11,9 +11,9 @@ public interface Banner extends BlockState {
     /**
      * Sets the base color of the banner.
      * @param color Base color
-     * @throws IllegalArgumentException If color is null
+     * @throws NullPointerException If color is null
      */
-    public void setBase(DyeColor color) throws IllegalArgumentException;
+    public void setBase(DyeColor color) throws NullPointerException;
 
     /**
      * Get the base color of the banner.
@@ -24,9 +24,9 @@ public interface Banner extends BlockState {
     /**
      * Sets the pattern of the banner. The old pattern is removed completely.
      * @param pattern Pattern to change to
-     * @throws IllegalArgumentException If pattern is null
+     * @throws NullPointerException If pattern is null
      */
-    public void setPattern(BannerPattern pattern) throws IllegalArgumentException;
+    public void setPattern(BannerPattern pattern) throws NullPointerException;
 
     /**
      * Gets the banner's pattern.
