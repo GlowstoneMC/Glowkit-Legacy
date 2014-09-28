@@ -63,10 +63,19 @@ public class BannerPattern {
             this.code = code;
         }
 
+        /**
+         * Gets the internal code of this banner pattern
+         * @return The 2/3 character pattern code
+         */
         public String getCode() {
             return code;
         }
 
+        /**
+         * Gets a pattern by the code
+         * @param code 2/3 character pattern code
+         * @return Banner pattern
+         */
         public Type getByCode(String code) {
             return BY_CODE.get(code);
         }
@@ -88,21 +97,7 @@ public class BannerPattern {
     }
 
     public static final class Builder {
-        DyeColor base = DyeColor.WHITE;
         ImmutableMap.Builder<Type, DyeColor> layers = ImmutableMap.builder();
-
-        /**
-         * Specified the base color of the banner.
-         * @param color Base color
-         * @return This object, for chaining
-         * @throws IllegalArgumentException If color is null
-         */
-        public Builder base(DyeColor color) throws IllegalArgumentException {
-            Validate.notNull(color, "Base cannot be null");
-            this.base = color;
-
-            return this;
-        }
 
         /**
          * Adds a colored layer to the banner.
@@ -125,16 +120,14 @@ public class BannerPattern {
          * @return The built BannerPattern
          */
         public BannerPattern build() {
-            return new BannerPattern(base, layers.build());
+            return new BannerPattern(layers.build());
         }
     }
 
     private final ImmutableMap<Type, DyeColor> layers;
-    private final DyeColor base;
 
 
-    BannerPattern(DyeColor base, ImmutableMap<Type, DyeColor> layers) {
-        this.base = base;
+    BannerPattern( ImmutableMap<Type, DyeColor> layers) {
         this.layers = layers;
     }
 
@@ -145,14 +138,6 @@ public class BannerPattern {
      */
     public Map<Type, DyeColor> getLayers() {
         return layers;
-    }
-
-    /**
-     * Gets the base color of this pattern.
-     * @return The base pattern
-     */
-    public DyeColor getBase() {
-        return base;
     }
 
 }
