@@ -66,7 +66,9 @@ public class BannerPattern {
         /**
          * Gets the internal code of this banner pattern
          * @return The 2/3 character pattern code
+         * @deprecated Magic value
          */
+        @Deprecated
         public String getCode() {
             return code;
         }
@@ -75,7 +77,9 @@ public class BannerPattern {
          * Gets a pattern by the code
          * @param code 2/3 character pattern code
          * @return Banner pattern
+         * @deprecated Magic value
          */
+        @Deprecated
         public static Type getByCode(String code) {
             return BY_CODE.get(code);
         }
