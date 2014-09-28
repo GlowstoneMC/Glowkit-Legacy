@@ -9,19 +9,6 @@ import org.bukkit.DyeColor;
 public interface BannerMeta extends ItemMeta {
 
     /**
-     * Sets the base color of the banner.
-     * @param color Base color
-     * @throws IllegalArgumentException If color is null
-     */
-    public void setBase(DyeColor color) throws IllegalArgumentException;
-
-    /**
-     * Get the base color of the banner.
-     * @return Base color
-     */
-    public DyeColor getBase();
-
-    /**
      * Sets the pattern of the banner. The old pattern is removed completely.
      * @param pattern Pattern to change to
      * @throws IllegalArgumentException If pattern is null
