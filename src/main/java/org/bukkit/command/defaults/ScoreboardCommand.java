@@ -100,17 +100,9 @@ public class ScoreboardCommand extends VanillaCommand {
                     return false;
                 }
                 String name = args[2];
-                String criteria = null;
-                for (String crit: OBJECTIVES_CRITERIA) {
-                    if (args[3].equalsIgnoreCase(crit)) {
-                        criteria = args[3];
-                        break;
-                    }
-                }
+                String criteria = args[3];
 
-                if (criteria == null) {
-                    sender.sendMessage(ChatColor.RED + "Invalid objective criteria type. Valid types are: " + stringCollectionToString(OBJECTIVES_CRITERIA));
-                } else if (name.length() > 16) {
+                if (name.length() > 16) {
                     sender.sendMessage(ChatColor.RED + "The name '" + name + "' is too long for an objective, it can be at most 16 characters long");
                 } else if (mainScoreboard.getObjective(name) != null) {
                     sender.sendMessage(ChatColor.RED + "An objective with the name '" + name + "' already exists");
