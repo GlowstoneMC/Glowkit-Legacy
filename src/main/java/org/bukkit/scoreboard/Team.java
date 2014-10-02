@@ -112,34 +112,37 @@ public interface Team {
     void setCanSeeFriendlyInvisibles(boolean enabled) throws IllegalStateException;
 
     /**
+     * Gets the name tag visibility of a team
+     * This affects what nametags will be visible to players on the team
      *
      * @return
      * @throws IllegalStateException if this team has been unregistered
-     * @since 1.8
      */
     NametagVisibility getNametagVisibility() throws IllegalStateException;
 
     /**
+     * Sets the name tag visibility of a team
+     * This affects what nametags will be visible to players on the team
      *
      * @param visibility
      * @throws IllegalStateException if this team has been unregistered
-     * @since 1.8
      */
     void setNametagVisibility(NametagVisibility visibility) throws IllegalStateException;
 
     /**
-     *
+     * Gets the color of a team
+     * This is only used for the team color sidebar slots
      * @return
      * @throws IllegalStateException if this team has been unregistered
-     * @since 1.8
      */
     ChatColor getColor() throws IllegalStateException;
 
     /**
+     * Sets color of a team
+     * This is only used for the team color sidebar slots
      *
      * @param color
      * @throws IllegalStateException if this team has been unregistered
-     * @since 1.8
      */
     void setColor(ChatColor color) throws IllegalStateException;
 
@@ -211,7 +214,6 @@ public interface Team {
      * @param visibility The visiblity of death messages
      * @throws IllegalArgumentException if the visibility is null
      * @throws IllegalStateException if this team has been unregistered
-     * @since 1.8
      */
     void setDeathMessageVisibility(NametagVisibility visibility) throws IllegalStateException, IllegalArgumentException;
 
@@ -220,7 +222,6 @@ public interface Team {
      *
      * @return visibility The visiblity of death messages
      * @throws IllegalStateException if this team has been unregistered
-     * @since 1.8
      */
     NametagVisibility getDeathMessageVisibility() throws IllegalStateException;
 }
