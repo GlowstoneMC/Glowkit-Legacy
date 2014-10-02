@@ -92,7 +92,6 @@ public interface Objective {
      *
      * @return
      * @throws IllegalStateException if this objective has been unregistered
-     * @since 1.8
      */
     RenderType getType() throws IllegalStateException;
 
@@ -100,7 +99,6 @@ public interface Objective {
      *
      * @param type
      * @throws IllegalStateException if this objective has been unregistered
-     * @since 1.8
      */
     void setType(RenderType type) throws IllegalStateException;
 
