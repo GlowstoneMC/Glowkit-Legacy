@@ -192,7 +192,7 @@ public enum Material {
     HARD_CLAY(172),
     COAL_BLOCK(173),
     PACKED_ICE(174),
-    DOUBLE_PLANT(175),
+    DOUBLE_PLANT(175, DoublePlant.class),
     STANDING_BANNER(176, Banner.class),
     WALL_BANNER(177, Banner.class),
     DAYLIGHT_DETECTOR_INVERTED(178),
