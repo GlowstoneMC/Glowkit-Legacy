@@ -31,5 +31,5 @@ public interface EnchantingInventory extends Inventory {
      *
      * @return The current item
      */
-    ItemStack setResource();
+    ItemStack getResource();
 }
