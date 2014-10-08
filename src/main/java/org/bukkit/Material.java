@@ -16,7 +16,7 @@ import com.google.common.collect.Maps;
  */
 public enum Material {
     AIR(0, 0),
-    STONE(1),
+    STONE(1, Stone.class),
     GRASS(2),
     DIRT(3),
     COBBLESTONE(4),
