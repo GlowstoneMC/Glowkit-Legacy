@@ -54,8 +54,7 @@ public class BannerPattern {
         TRIANGLE_BOTTOM_RIGHT("rd"),
         TRIANGLE_TOP("tt"),
         TRIANGLE_TOP_LEFT("ld"),
-        TRIANGLE_TOP_RIGHT("rud"),
-        ;
+        TRIANGLE_TOP_RIGHT("rud");
 
         private final String code;
         private final static Map<String, Type> BY_CODE = Maps.newHashMap();
