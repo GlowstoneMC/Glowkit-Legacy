@@ -1,22 +1,21 @@
 package org.bukkit;
 
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang.Validate;
 
+import java.util.List;
 import java.util.Map;
 
 /**
- * Represents <i>all</i> patterns on a banner.
- * It is a ordered map of each pattern type and its color.
+ * Represents a <i>complete</i> pattern for a banner.
  */
 public class BannerPattern {
 
     /**
-     * Represents an individual pattern layer on a banner.<p/>
-     * Names of these enums relate to the client's texture files.
+     * Represents an individual pattern texture on a banner.<p/>
      */
-    public static enum Type {
+    public static enum LayerTexture {
         BORDER("bo"),
         BOTTOM_HALF("hhb"),
         BRICK("bri"),
@@ -57,14 +56,14 @@ public class BannerPattern {
         TRIANGLE_TOP_RIGHT("rud");
 
         private final String code;
-        private final static Map<String, Type> BY_CODE = Maps.newHashMap();
+        private final static Map<String, LayerTexture> BY_CODE = Maps.newHashMap();
 
-        private Type(String code) {
+        private LayerTexture(String code) {
             this.code = code;
         }
 
         /**
-         * Gets the internal code of this banner pattern
+         * Gets the internal code of this banner texture
          * @return The 2/3 character pattern code
          * @deprecated Magic value
          */
@@ -74,20 +73,42 @@ public class BannerPattern {
         }
 
         /**
-         * Gets a pattern by the code
+         * Gets a texture by the code
          * @param code 2/3 character pattern code
          * @return Banner pattern
          * @deprecated Magic value
          */
         @Deprecated
-        public static Type getByCode(String code) {
+        public static LayerTexture getByCode(String code) {
             return BY_CODE.get(code);
         }
 
         static {
-            for (Type type : Type.values()) {
+            for (LayerTexture type : LayerTexture.values()) {
                 BY_CODE.put(type.code, type);
             }
+        }
+    }
+
+    /**
+     * Representation of a single colored layer on a banner.
+     */
+    public static class BannerLayer {
+
+        private LayerTexture texture;
+        private DyeColor color;
+
+        private BannerLayer(LayerTexture texture, DyeColor color) {
+            this.texture = texture;
+            this.color = color;
+        }
+
+        public LayerTexture getTexture() {
+            return texture;
+        }
+
+        public DyeColor getColor() {
+            return color;
         }
     }
 
@@ -101,20 +122,20 @@ public class BannerPattern {
     }
 
     public static final class Builder {
-        ImmutableMap.Builder<Type, DyeColor> layers = ImmutableMap.builder();
+        ImmutableList.Builder<BannerLayer> layers = ImmutableList.builder();
 
         /**
          * Adds a colored layer to the banner.
-         * @param type Pattern for this layer
+         * @param texture Pattern for this layer
          * @param color Color of the layer
          * @return This object, for chaining
-         * @throws IllegalArgumentException If type is null
+         * @throws IllegalArgumentException If texture is null
          * @throws IllegalArgumentException If color is null
          */
-        public Builder layer(Type type, DyeColor color) throws IllegalArgumentException {
-            Validate.notNull(type, "Cannot have null type");
+        public Builder layer(LayerTexture texture, DyeColor color) {
+            Validate.notNull(texture, "Cannot have null texture");
             Validate.notNull(color, "Cannot have null color");
-            layers.put(type, color);
+            layers.add(new BannerLayer(texture, color));
 
             return this;
         }
@@ -128,19 +149,19 @@ public class BannerPattern {
         }
     }
 
-    private final ImmutableMap<Type, DyeColor> layers;
+    private final ImmutableList<BannerLayer> layers;
 
 
-    BannerPattern( ImmutableMap<Type, DyeColor> layers) {
+    BannerPattern(ImmutableList<BannerLayer> layers) {
         this.layers = layers;
     }
 
     /**
-     * Get the layers of this pattern. <br/>
-     * <b>Note:</b> The returned {@link ImmutableMap} has a reliable iteration order, starting from the bottom layer.
+     * Get the layers of this pattern.
+     *
      * @return The layers of this pattern
      */
-    public Map<Type, DyeColor> getLayers() {
+    public List<BannerLayer> getLayers() {
         return layers;
     }
 

@@ -10,10 +10,9 @@ public interface BannerMeta extends ItemMeta {
 
     /**
      * Sets the pattern of the banner. The old pattern is removed completely.
-     * @param pattern Pattern to change to
-     * @throws IllegalArgumentException If pattern is null
+     * @param pattern Pattern to change to, must not be null
      */
-    public void setPattern(BannerPattern pattern) throws NullPointerException;
+    public void setPattern(BannerPattern pattern);
 
     /**
      * Gets the banner's pattern.
