@@ -16,6 +16,7 @@ import org.bukkit.Warning.WarningState;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.RemoteConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -692,6 +693,14 @@ public interface Server extends PluginMessageRecipient {
      * @return a console command sender
      */
     public ConsoleCommandSender getConsoleSender();
+
+    /**
+     * Gets a {@link RemoteConsoleCommandSender} that may be used as an input source
+     * for this server.
+     *
+     * @return a remote console command sender
+     */
+    public RemoteConsoleCommandSender getRemoteConsoleCommandSender();
 
     /**
      * Gets the folder that contains all of the various {@link World}s.
