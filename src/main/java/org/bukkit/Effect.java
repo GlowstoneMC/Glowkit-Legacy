@@ -82,7 +82,7 @@ public enum Effect {
     /**
      * Sound of an Enderdragon dying.
      */
-    ENDERDRAGON_DIE(1018, Type.SOUND),
+    ENDERDRAGON_DIE(1018, Type.SOUND, true),
     /**
      * Sound of an anvil breaking.
      */
@@ -120,16 +120,6 @@ public enum Effect {
      * The green particles that appear when using bonemeal on a plant.
      */
     BONEMEAL_USE(2005, Type.VISUAL),
-    /**
-     * Visual effect of dust played when an entity lands on a block after
-     * falling from a high altitude. Needs an integer which is the particle
-     * speed.
-     * <p>
-     * When playing it, the location is the block the entity has fallen on,
-     * and is used to choose the appropiate texture based on the block
-     * material. The particles are rendered on top of that.
-     */
-    LAND_DUST(2006, Type.VISUAL, Integer.class),
     ;
 
     private final int id;
