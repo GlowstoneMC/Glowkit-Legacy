@@ -33,13 +33,13 @@ public final class FireworkEffect implements ConfigurationSerializable {
          */
         STAR,
         /**
-         * A burst effect.
-         */
-        BURST,
-        /**
          * A creeper-face effect.
          */
         CREEPER,
+        /**
+        * A burst effect.
+        */
+        BURST,
         ;
     }
 
