@@ -31,43 +31,24 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
          * The resource pack download has succeeded, and the client is now using the resource pack sent to it.
          * This occurs after the resource pack has been downloaded and applied.
          */
-        SUCCESS(0),
+        SUCCESS,
 
         /*
          * The client declined the download.
          * This occurs when the user clicks 'No' at the download prompt.
          */
-        DECLINED(1),
+        DECLINED,
 
         /*
          * The client encountered an error when downloading the specified resource pack.
          * This occurs when the user clicks 'Yes' at the download prompt, but an error occurs.
          */
-        FAILED_DOWNLOAD(2),
+        FAILED_DOWNLOAD,
 
         /*
          * The client accepted the resource pack, but it has not been downloaded yet.
          * This occurs when the user clicks 'Yes' at the download prompt, but an error occurs.
          */
-        ACCEPTED(3);
-
-        private int value;
-        private static Map<Integer, Status> valueLookup = new HashMap<Integer, Status>();
-
-        Status(int value) {
-            this.value = value;
-        }
-
-        static {
-            for (Status s: Status.values()) {
-                valueLookup.put(s.value, s);
-            }
-        }
-
-        public static Status valueOf(int value) {
-            return valueLookup.get(value);
-        }
-
-
+        ACCEPTED;
     }
 }
