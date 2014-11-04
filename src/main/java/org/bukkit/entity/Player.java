@@ -984,6 +984,8 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * Notes:
      * <ul>
+     * <li>This triggers a force refresh of the resource pack, even if the
+     *     client is already using it.
      * <li>Players can disable server resources on their client, in which
      *     case this method will have no affect on them.
      * <li>There is no concept of resetting resource packs back to default
@@ -1000,7 +1002,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @throws IllegalArgumentException Thrown if the URL is too long. The
      *     length restriction is an implementation specific arbitrary value.
      */
-    @Deprecated
     public void setResourcePack(String url);
 
     /**
