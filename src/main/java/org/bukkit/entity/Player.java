@@ -1031,14 +1031,14 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @param url The URL from which the client will download the resource
      *     pack. The string must contain only US-ASCII characters and should
      *     be encoded as per RFC 1738.
-     * @param hash The SHA-1 hash of the file to download.
+     * @param shaHash The SHA-1 hash of the file to download.
      * @throws IllegalArgumentException Thrown if the hash is longer than 40 characters
      * @throws IllegalArgumentException Thrown if the hash is null.
      * @throws IllegalArgumentException Thrown if the URL is null.
      * @throws IllegalArgumentException Thrown if the URL is too long. The
      *     length restriction is an implementation specific arbitrary value.
      */
-    public void setResourcePack(String url, String hash);
+    public void setResourcePack(String url, String shaHash);
 
     /**
      * Gets the Scoreboard displayed to this player
