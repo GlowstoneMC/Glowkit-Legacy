@@ -6,6 +6,9 @@ import org.bukkit.event.HandlerList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Called when a client reports the status of a resource pack sent to it
+ */
 public class PlayerResourcePackStatusEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private final Status status;
@@ -17,8 +20,20 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
         this.hash = hash;
     }
 
+    /**
+     * Gets the status of the resource pack sent to the client.
+     *
+     * @return status A {@link Status} describing the status of the resource pack.
+     */
     public Status getStatus() { return status; }
 
+    /**
+     * Gets the specified hash of the resource pack sent to the client.
+     *
+     * This can be used to identify different resource packs sent to the client.
+     * 
+     * @return hash The hash of the resource pack
+     */
     public String getHash() { return hash; }
 
     public enum Status {
