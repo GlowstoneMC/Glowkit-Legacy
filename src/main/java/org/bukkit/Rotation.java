@@ -5,6 +5,7 @@ package org.bukkit;
  * <p>
  * It represents how something is viewed, as opposed to cardinal directions.
  */
+@Deprecated
 public enum Rotation {
 
     /**
@@ -25,14 +26,14 @@ public enum Rotation {
     COUNTER_CLOCKWISE(270),
     ;
 
-    private double degree;
+    private double rotation;
 
-    private Rotation(double degree) {
-        this.degree = degree;
+    private Rotation(double rotation) {
+        this.rotation = rotation;
     }
 
-    public double getDegree() {
-        return degree;
+    public double getRotation() {
+        return rotation;
     }
 
     private static final Rotation [] rotations = values();

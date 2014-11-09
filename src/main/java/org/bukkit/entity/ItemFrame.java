@@ -27,7 +27,15 @@ public interface ItemFrame extends Hanging {
      *
      * @return the direction
      */
+    @Deprecated
     public Rotation getRotation();
+
+    /**
+     * Get the rotation of the frame's item
+     *
+     * @return the rotation, in degrees
+     */
+    public double getRotationAngle();
 
     /**
      * Set the rotation of the frame's item
@@ -44,7 +52,6 @@ public interface ItemFrame extends Hanging {
      * Values will be rounded to the closest 45-degree interval
      *
      * @param rotation the new rotation (0 degrees is north)
-     * @throws IllegalArgumentException if rotation is invalid
      */
-    public void setRotation(double rotation) throws IllegalArgumentException;
+    public void setRotationAngle(double rotation);
 }
