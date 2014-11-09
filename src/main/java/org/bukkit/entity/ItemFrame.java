@@ -41,8 +41,10 @@ public interface ItemFrame extends Hanging {
     /**
      * Set the rotation of the frame's item, in degrees
      *
+     * Values will be rounded to the closest 45-degree interval
+     *
      * @param rotation the new rotation (0 degrees is north)
      * @throws IllegalArgumentException if rotation is invalid
      */
-    public void setRotation(int rotation) throws IllegalArgumentException;
+    public void setRotation(double rotation) throws IllegalArgumentException;
 }

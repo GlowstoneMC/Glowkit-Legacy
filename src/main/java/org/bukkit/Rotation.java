@@ -25,13 +25,13 @@ public enum Rotation {
     COUNTER_CLOCKWISE(270),
     ;
 
-    private int degree;
+    private double degree;
 
-    private Rotation(int degree) {
+    private Rotation(double degree) {
         this.degree = degree;
     }
 
-    public int getDegree() {
+    public double getDegree() {
         return degree;
     }
 
