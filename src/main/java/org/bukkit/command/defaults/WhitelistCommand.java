@@ -72,15 +72,15 @@ public class WhitelistCommand extends VanillaCommand {
                 if (badPerm(sender, "add")) return true;
 
                 OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+                if (target.getUniqueId() != null) {
+                    if (target.isWhitelisted()) {
+                        sender.sendMessage(target.getName() + " is already on the white-list");
+                    } else {
+                        target.setWhitelisted(true);
 
-                if (target.isWhitelisted()) {
-                    sender.sendMessage(target.getName() + " is already on the white-list");
-                } else {
-                    target.setWhitelisted(true);
-
-                    Command.broadcastCommandMessage(sender, "Added " + args[1] + " to the white-list");
-                }
-
+                        Command.broadcastCommandMessage(sender, "Added " + args[1] + " to the white-list");
+                    }
+                } else { Command.broadcastCommandMessage(sender, "Could not add "+ args[1] + " to the white-list"); }
                 return true;
             } else if (args[0].equalsIgnoreCase("remove")) {
                 if (badPerm(sender, "remove")) return true;
