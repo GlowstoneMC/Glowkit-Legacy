@@ -2,12 +2,10 @@ package org.bukkit.entity;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.InventoryView;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.*;
 import org.bukkit.permissions.Permissible;
+import org.bukkit.title.Title;
+import org.bukkit.title.TitleOptions;
 
 /**
  * Represents a human entity, such as an NPC or a player
@@ -174,4 +172,47 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      * @return Experience required to level up
      */
     public int getExpToLevel();
+
+    /**
+     * Removes the title from the player's view. This does not reset the values
+     * the player sees.
+     */
+    public void clearTitle();
+
+    /**
+     * Resets the title settings for this player. Sets their {@link org.bukkit.title.TitleOptions}
+     * back to defaults and removes their currently set {@link org.bukkit.title.Title}.
+     */
+    public void resetTitle();
+
+    /**
+     * Gets the title currently set on the player
+     *
+     * @return the current title
+     */
+    public Title getTitle();
+
+    /**
+     * Sets the title to be shown to the player. Upon setting, the title will
+     * be shown.
+     *
+     * @param title the title to show the player
+     */
+    public void setTitle(Title title);
+
+    /**
+     * Gets the player's current title options.
+     *
+     * @return the current title options
+     */
+    public TitleOptions getTitleOptions();
+
+    /**
+     * Sets the player's title options. Upon setting, the new options will be
+     * sent to the player. Setting this to null will result in the default
+     * settings being applied.
+     *
+     * @param options the new options for the player
+     */
+    public void setTitleOptions(TitleOptions options);
 }
