@@ -73,7 +73,7 @@ public class TitleOptions implements Cloneable {
      * @param time the new time, in ticks
      */
     public void setFadeInTime(int time) {
-        Validate.isTrue(time > 0, "Fade in time must be at least 0 ticks");
+        Validate.isTrue(time >= 0, "Fade in time must be at least 0 ticks");
         this.fadeIn = time;
     }
 
@@ -83,7 +83,7 @@ public class TitleOptions implements Cloneable {
      * @param time the new time, in ticks
      */
     public void setFadeOutTime(int time) {
-        Validate.isTrue(time > 0, "Fade out time must be at least 0 ticks");
+        Validate.isTrue(time >= 0, "Fade out time must be at least 0 ticks");
         this.fadeOut = time;
     }
 
@@ -93,7 +93,7 @@ public class TitleOptions implements Cloneable {
      * @param time the new time, in ticks
      */
     public void setVisibleTime(int time) {
-        Validate.isTrue(time > 0, "Visible time must be at least 0 ticks");
+        Validate.isTrue(time >= 0, "Visible time must be at least 0 ticks");
         this.visible = time;
     }
 
