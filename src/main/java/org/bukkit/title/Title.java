@@ -9,6 +9,13 @@ public class Title {
     private String subtitle;
 
     /**
+     * Creates a new empty title.
+     */
+    public Title() {
+        this(null, null);
+    }
+
+    /**
      * Creates a new title.
      *
      * @param heading the title's heading
