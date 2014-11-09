@@ -21,11 +21,6 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
 
     public String getHash() { return hash; }
 
-    @Override
-    public HandlerList getHandlers() {
-        return handlers;
-    }
-
     public enum Status {
         /*
          * The resource pack download has succeeded, and the client is now using the resource pack sent to it.
@@ -50,5 +45,14 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
          * This occurs when the user clicks 'Yes' at the download prompt, but an error occurs.
          */
         ACCEPTED;
+    }
+
+    @Override
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 }
