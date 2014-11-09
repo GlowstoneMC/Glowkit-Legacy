@@ -5,7 +5,7 @@ import org.apache.commons.lang.Validate;
 /**
  * Represents the options for the title on a player
  */
-public class TitleOptions {
+public class TitleOptions implements Cloneable {
 
     private int fadeIn;
     private int fadeOut;
@@ -95,6 +95,15 @@ public class TitleOptions {
     public void setVisibleTime(int time) {
         Validate.isTrue(time > 0, "Visible time must be at least 0 ticks");
         this.visible = time;
+    }
+
+    @Override
+    public TitleOptions clone() {
+        try {
+            return (TitleOptions) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new Error(e);
+        }
     }
 
 }

@@ -1077,11 +1077,22 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
 
     /**
      * Sets the title to be shown to the player. Upon setting, the title will
-     * be shown.
+     * be shown if the title's heading differs from the last sent title. Only
+     * changing the subtitle has no effect.
      *
      * @param title the title to show the player
      */
     public void setTitle(Title title);
+
+    /**
+     * Sets the title to be shown the player. If forceUpdate is true, this
+     * will update the player immediately, otherwise the player will only
+     * be updated if the header has been changed from the last sent title.
+     *
+     * @param title the title to show the player
+     * @param forceUpdate true to force update the player, false otherwise
+     */
+    public void setTitle(Title title, boolean forceUpdate);
 
     /**
      * Gets the player's current title options.

@@ -3,7 +3,7 @@ package org.bukkit.title;
 /**
  * Represents a title to be sent to a player. A valid title is one which has a heading.
  */
-public class Title {
+public class Title implements Cloneable {
 
     private String title;
     private String subtitle;
@@ -78,6 +78,15 @@ public class Title {
             this.subtitle = null;
         } else {
             this.subtitle = subtitle;
+        }
+    }
+
+    @Override
+    public Title clone() {
+        try {
+            return (Title) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new Error(e);
         }
     }
 
