@@ -35,5 +35,14 @@ public interface ItemFrame extends Hanging {
      * @param rotation the new rotation
      * @throws IllegalArgumentException if rotation is null
      */
+    @Deprecated
     public void setRotation(Rotation rotation) throws IllegalArgumentException;
+
+    /**
+     * Set the rotation of the frame's item, in degrees
+     *
+     * @param rotation the new rotation (0 degrees is north)
+     * @throws IllegalArgumentException if rotation is invalid
+     */
+    public void setRotation(int rotation) throws IllegalArgumentException;
 }

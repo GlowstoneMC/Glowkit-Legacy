@@ -10,20 +10,30 @@ public enum Rotation {
     /**
      * No rotation
      */
-    NONE,
+    NONE(0),
     /**
      * Rotated clockwise by 90 degrees
      */
-    CLOCKWISE,
+    CLOCKWISE(90),
     /**
      * Flipped upside-down, a 180 degree rotation
      */
-    FLIPPED,
+    FLIPPED(180),
     /**
      * Rotated counter-clockwise by 90 degrees
      */
-    COUNTER_CLOCKWISE,
+    COUNTER_CLOCKWISE(270),
     ;
+
+    private int degree;
+
+    private Rotation(int degree) {
+        this.degree = degree;
+    }
+
+    public int getDegree() {
+        return degree;
+    }
 
     private static final Rotation [] rotations = values();
 
