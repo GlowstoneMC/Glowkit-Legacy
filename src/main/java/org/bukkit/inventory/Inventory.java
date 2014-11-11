@@ -350,10 +350,10 @@ public interface Inventory extends Iterable<ItemStack> {
      * @return A String with the title.
      */
     public String getTitle();
-    
+
     /**
      * Sets the title of this inventory. This will have no effect if {@link Inventory#isNameable()} returns false.
-     * 
+     *
      * @param title the new title of this inventory.
      */
     public void setTitle(String title);
