@@ -118,7 +118,9 @@ public enum Effect {
     MOBSPAWNER_FLAMES(2004, Type.VISUAL),
     /**
      * The green particles that appear when using bonemeal on a plant; a visual
-     * effect. Needs a non-air block as additional info.
+     * effect. Needs a non-air block as additional info. An optional integer
+     * may be supplied to represent the number of particles to show, by default
+     * 15 are shown.
      */
     BONEMEAL_USE(2005, Type.VISUAL),
     ;
