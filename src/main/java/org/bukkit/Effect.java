@@ -117,9 +117,8 @@ public enum Effect {
      */
     MOBSPAWNER_FLAMES(2004, Type.VISUAL),
     /**
-     * The green particles that appear when using bonemeal on a plant. Location
-     * can't be an air block. Takes an optional integer, which is the amount of
-     * particles to spawn. If not given, it will spawn 15 particles.
+     * The green particles that appear when using bonemeal on a plant; a visual
+     * effect. Needs a non-air block as additional info.
      */
     BONEMEAL_USE(2005, Type.VISUAL),
     ;
@@ -176,6 +175,10 @@ public enum Effect {
     }
 
     /**
+     * Gets whether or not the distance to the player is ignored by this
+     * effect. If distance is ignored, the player will hear/see the effect
+     * regardless of how far away the effect is played from them.
+     *
      * @return True if effect ignores distance
      */
     public boolean isDistanceIgnored() {
