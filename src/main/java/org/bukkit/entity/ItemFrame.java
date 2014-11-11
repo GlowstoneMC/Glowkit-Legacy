@@ -25,6 +25,7 @@ public interface ItemFrame extends Hanging {
     /**
      * Get the rotation of the frame's item
      *
+     * @deprecated This does not handle the various degrees of rotation available.
      * @return the direction
      */
     @Deprecated
@@ -41,6 +42,7 @@ public interface ItemFrame extends Hanging {
      * Set the rotation of the frame's item
      *
      * @param rotation the new rotation
+     * @deprecated This does not handle the various degrees of rotation available.
      * @throws IllegalArgumentException if rotation is null
      */
     @Deprecated
