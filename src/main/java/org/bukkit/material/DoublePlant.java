@@ -18,7 +18,6 @@ public class DoublePlant extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -31,7 +30,6 @@ public class DoublePlant extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -40,7 +38,6 @@ public class DoublePlant extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -51,7 +48,7 @@ public class DoublePlant extends MaterialData {
     /**
      * Gets the current species of this double plant.
      *
-     * @return DoublePlantSpecies of this double plant
+     * @return The DoublePlantSpecies of this double plant
      */
     public DoublePlantSpecies getSpecies() {
         return DoublePlantSpecies.getByData(getData());
@@ -60,7 +57,7 @@ public class DoublePlant extends MaterialData {
     /**
      * Sets the species of this double plant.
      *
-     * @param species New species of this double plant
+     * @param species The new species of this double plant
      */
     public void setSpecies(DoublePlantSpecies species) {
         setData(species.getData());
