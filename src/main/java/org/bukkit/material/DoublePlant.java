@@ -7,6 +7,7 @@ import org.bukkit.Material;
  * Represents the different types of double plants.
  */
 public class DoublePlant extends MaterialData {
+
     public DoublePlant() {
         super(Material.DOUBLE_PLANT);
     }
@@ -48,7 +49,7 @@ public class DoublePlant extends MaterialData {
     }
 
     /**
-     * Gets the current species of this double plant
+     * Gets the current species of this double plant.
      *
      * @return DoublePlantSpecies of this double plant
      */
@@ -57,7 +58,7 @@ public class DoublePlant extends MaterialData {
     }
 
     /**
-     * Sets the species of this double plant
+     * Sets the species of this double plant.
      *
      * @param species New species of this double plant
      */

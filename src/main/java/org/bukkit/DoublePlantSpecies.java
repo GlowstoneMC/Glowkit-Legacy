@@ -8,7 +8,6 @@ import com.google.common.collect.Maps;
  * Represents the six different species of double plants.
  */
 public enum DoublePlantSpecies {
-
     /**
      * Represents the sunflower double plant.
      */
@@ -46,7 +45,7 @@ public enum DoublePlantSpecies {
     }
 
     /**
-     * Gets the associated data value representing this species
+     * Gets the associated data value representing this species.
      *
      * @return A byte containing the data value of this double plant species
      * @deprecated Magic value
@@ -57,9 +56,9 @@ public enum DoublePlantSpecies {
     }
 
     /**
-     * Gets the DoublePlantSpecies with the given data value
+     * Gets the DoublePlantSpecies with the given data value.
      *
-     * @param data Data value to fetch
+     * @param data The data value to fetch
      * @return The {@link DoublePlantSpecies} representing the given value, or null
      *     if it doesn't exist
      * @deprecated Magic value
