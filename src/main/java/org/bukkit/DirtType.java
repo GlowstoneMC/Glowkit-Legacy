@@ -8,17 +8,16 @@ import com.google.common.collect.Maps;
  * Represents the three different types of dirt.
  */
 public enum DirtType {
-
     /**
-     * Represents the normal dirt.
+     * Represents the regular dirt type.
      */
     NORMAL(0x0),
     /**
-     * Represents the coarse dirt.
+     * Represents the coarse dirt type.
      */
     COARSE(0x1),
     /**
-     * Represents the podzol.
+     * Represents the Podzol dirt type.
      */
     PODZOL(0x2);
 
@@ -30,7 +29,7 @@ public enum DirtType {
     }
 
     /**
-     * Gets the associated data value representing this type
+     * Gets the associated data value representing this type.
      *
      * @return A byte containing the data value of this dirt type
      * @deprecated Magic value
@@ -41,9 +40,9 @@ public enum DirtType {
     }
 
     /**
-     * Gets the DirtType with the given data value
+     * Gets the DirtType with the given data value.
      *
-     * @param data Data value to fetch
+     * @param data The data value to fetch
      * @return The {@link DirtType} representing the given value, or null
      *     if it doesn't exist
      * @deprecated Magic value

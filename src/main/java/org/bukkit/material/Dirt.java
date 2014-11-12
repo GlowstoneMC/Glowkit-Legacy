@@ -7,6 +7,7 @@ import org.bukkit.Material;
  * Represents the different types of dirt.
  */
 public class Dirt extends MaterialData {
+
     public Dirt() {
         super(Material.DIRT);
     }
@@ -17,7 +18,6 @@ public class Dirt extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -30,7 +30,6 @@ public class Dirt extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -39,7 +38,6 @@ public class Dirt extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -48,21 +46,21 @@ public class Dirt extends MaterialData {
     }
 
     /**
-     * Gets the current type of this dirt
+     * Gets the current type of this dirt.
      *
-     * @return DirtType of this dirt
+     * @return The type of dirt
      */
     public DirtType getType() {
         return DirtType.getByData(getData());
     }
 
     /**
-     * Sets the type of this dirt
+     * Sets the type of this dirt.
      *
-     * @param dirt New type of this dirt
+     * @param type The new type of dirt
      */
-    public void setType(DirtType dirt) {
-        setData(dirt.getData());
+    public void setType(DirtType type) {
+        setData(type.getData());
     }
 
     @Override
