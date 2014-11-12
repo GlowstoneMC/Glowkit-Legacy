@@ -8,7 +8,6 @@ import com.google.common.collect.Maps;
  * Represents the seven different types of stone.
  */
 public enum StoneType {
-
     /**
      * Represents the normal stone.
      */
@@ -46,7 +45,7 @@ public enum StoneType {
     }
 
     /**
-     * Gets the associated data value representing this type
+     * Gets the associated data value representing this type.
      *
      * @return A byte containing the data value of this stone type
      * @deprecated Magic value
@@ -57,9 +56,9 @@ public enum StoneType {
     }
 
     /**
-     * Gets the StoneType with the given data value
+     * Gets the StoneType with the given data value.
      *
-     * @param data Data value to fetch
+     * @param data The data value to fetch
      * @return The {@link StoneType} representing the given value, or null
      *     if it doesn't exist
      * @deprecated Magic value

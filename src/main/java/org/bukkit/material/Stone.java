@@ -7,6 +7,7 @@ import org.bukkit.Material;
  * Represents the different types of stone.
  */
 public class Stone extends MaterialData {
+
     public Stone() {
         super(Material.STONE);
     }
@@ -17,7 +18,6 @@ public class Stone extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -30,7 +30,6 @@ public class Stone extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -39,7 +38,6 @@ public class Stone extends MaterialData {
     }
 
     /**
-     *
      * @deprecated Magic value
      */
     @Deprecated
@@ -48,7 +46,7 @@ public class Stone extends MaterialData {
     }
 
     /**
-     * Gets the current type of this stone
+     * Gets the current type of this stone.
      *
      * @return StoneType of this stone
      */
@@ -57,7 +55,7 @@ public class Stone extends MaterialData {
     }
 
     /**
-     * Sets the type of this stone
+     * Sets the type of this stone.
      *
      * @param stone New type of this stone
      */
