@@ -38,6 +38,8 @@ public class GameRuleCommand extends VanillaCommand {
 
                 world.setGameRuleValue(rule, value);
                 Command.broadcastCommandMessage(sender, "Game rule " + rule + " has been set to: " + value);
+            } else if (!world.isGameRule(rule)) {
+                sender.sendMessage("No game rule called '" + rule + "' is available");
             } else {
                 String value = world.getGameRuleValue(rule);
                 sender.sendMessage(rule + " = " + value);
