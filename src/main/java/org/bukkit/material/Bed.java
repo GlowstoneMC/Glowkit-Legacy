@@ -99,11 +99,7 @@ public class Bed extends MaterialData implements Directional {
             data = 0x3;
         }
 
-        if (isHeadOfBed()) {
-            data |= 0x8;
-        }
-
-        setData(data);
+        setData((byte) (getData() & ~0x3 | data));
     }
 
     /**
@@ -112,7 +108,7 @@ public class Bed extends MaterialData implements Directional {
      * @return the direction the head of the bed is facing
      */
     public BlockFace getFacing() {
-        byte data = (byte) (getData() & 0x7);
+        byte data = (byte) (getData() & 0x3);
 
         switch (data) {
         case 0x0:
@@ -130,9 +126,28 @@ public class Bed extends MaterialData implements Directional {
         }
     }
 
+    /**
+     * Set whether this bed is occupied. Note that this will
+     * only affect one of the two blocks the bed is made of.
+     *
+     * @param isOccupied True to set the bed occupied.
+     */
+    public void setOccupied(boolean isOccupied) {
+        setData((byte) (isOccupied ? (getData() | 0x4) : (getData() & ~0x4)));
+    }
+
+    /**
+     * Determine if this bed is occupied.
+     *
+     * @return true if this bed is occupied, false if it is not
+     */
+    public boolean isOccupied() {
+        return (getData() & 0x4) == 0x4;
+    }
+
     @Override
     public String toString() {
-        return (isHeadOfBed() ? "HEAD" : "FOOT") + " of " + super.toString() + " facing " + getFacing();
+        return (isOccupied()?"":"UN") + "OCCUPIED " + (isHeadOfBed() ? "HEAD" : "FOOT") + " of " + super.toString() + " facing " + getFacing();
     }
 
     @Override
