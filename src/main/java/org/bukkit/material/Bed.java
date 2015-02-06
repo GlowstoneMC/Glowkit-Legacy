@@ -126,28 +126,9 @@ public class Bed extends MaterialData implements Directional {
         }
     }
 
-    /**
-     * Set whether this bed is occupied. Note that this will
-     * only affect one of the two blocks the bed is made of.
-     *
-     * @param isOccupied True to set the bed occupied.
-     */
-    public void setOccupied(boolean isOccupied) {
-        setData((byte) (isOccupied ? (getData() | 0x4) : (getData() & ~0x4)));
-    }
-
-    /**
-     * Determine if this bed is occupied.
-     *
-     * @return true if this bed is occupied, false if it is not
-     */
-    public boolean isOccupied() {
-        return (getData() & 0x4) == 0x4;
-    }
-
     @Override
     public String toString() {
-        return (isOccupied()?"":"UN") + "OCCUPIED " + (isHeadOfBed() ? "HEAD" : "FOOT") + " of " + super.toString() + " facing " + getFacing();
+        return (isHeadOfBed() ? "HEAD" : "FOOT") + " of " + super.toString() + " facing " + getFacing();
     }
 
     @Override
