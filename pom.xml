@@ -23,24 +23,18 @@
     </ciManagement>
     -->
 
-    <distributionManagement>
-        <!--
-        <site>
-            <id>jd.bukkit.org</id>
-            <url>file:///home/javadocs/public_html/</url>
-        </site>
-        -->
-        <repository>
-            <id>glowrepo-releases</id>
-            <name>repo.glowstone.net Releases</name>
-            <url>http://repo.glowstone.net/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>glowrepo-snapshots</id>
-            <name>repo.glowstone.net Snapshots</name>
-            <url>http://repo.glowstone.net/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>glowstone-upstream</id>
+			<name>glowstone-releases</name>
+			<url>https://repo.glowstone.net/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>glowstone-upstream</id>
+			<name>glowstone-snapshots</name>
+			<url>https://repo.glowstone.net/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
     <build>
         <plugins>
