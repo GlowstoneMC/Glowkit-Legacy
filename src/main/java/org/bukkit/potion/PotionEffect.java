@@ -1,14 +1,13 @@
 package org.bukkit.potion;
 
-import java.util.Map;
-import java.util.NoSuchElementException;
-
+import com.google.common.collect.ImmutableMap;
 import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
 import org.bukkit.entity.LivingEntity;
 
-import com.google.common.collect.ImmutableMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  * Represents a potion effect, that can be added to a {@link LivingEntity}. A
@@ -22,10 +21,25 @@ public class PotionEffect implements ConfigurationSerializable {
     private static final String DURATION = "duration";
     private static final String TYPE = "effect";
     private static final String AMBIENT = "ambient";
+    private static final String PARTICLES = "show-particles";
     private final int amplifier;
     private final int duration;
     private final PotionEffectType type;
     private final boolean ambient;
+    private final boolean particles;
+
+    /**
+     * Creates a potion effect. Assumes particles is true.
+     *
+     * @param type effect type
+     * @param duration measured in ticks, see {@link
+     *     PotionEffect#getDuration()}
+     * @param amplifier the amplifier, see {@link PotionEffect#getAmplifier()}
+     * @param ambient the ambient status, see {@link PotionEffect#isAmbient()}
+     */
+    public PotionEffect(PotionEffectType type, int duration, int amplifier, boolean ambient) {
+        this(type, duration, amplifier, ambient, true);
+    }
 
     /**
      * Creates a potion effect.
@@ -35,17 +49,19 @@ public class PotionEffect implements ConfigurationSerializable {
      *     PotionEffect#getDuration()}
      * @param amplifier the amplifier, see {@link PotionEffect#getAmplifier()}
      * @param ambient the ambient status, see {@link PotionEffect#isAmbient()}
+     * @param particles whether to show particles, see {@link PotionEffect#hasParticles()}
      */
-    public PotionEffect(PotionEffectType type, int duration, int amplifier, boolean ambient) {
+    public PotionEffect(PotionEffectType type, int duration, int amplifier, boolean ambient, boolean particles) {
         Validate.notNull(type, "effect type cannot be null");
         this.type = type;
         this.duration = duration;
         this.amplifier = amplifier;
         this.ambient = ambient;
+        this.particles = particles;
     }
 
     /**
-     * Creates a potion effect. Assumes ambient is true.
+     * Creates a potion effect. Assumes ambient and particles are true.
      *
      * @param type Effect type
      * @param duration measured in ticks
@@ -53,7 +69,7 @@ public class PotionEffect implements ConfigurationSerializable {
      * @see PotionEffect#PotionEffect(PotionEffectType, int, int, boolean)
      */
     public PotionEffect(PotionEffectType type, int duration, int amplifier) {
-        this(type, duration, amplifier, true);
+        this(type, duration, amplifier, true, true);
     }
 
     /**
@@ -62,7 +78,7 @@ public class PotionEffect implements ConfigurationSerializable {
      * @param map the map to deserialize from
      */
     public PotionEffect(Map<String, Object> map) {
-        this(getEffectType(map), getInt(map, DURATION), getInt(map, AMPLIFIER), getBool(map, AMBIENT));
+        this(getEffectType(map), getInt(map, DURATION), getInt(map, AMPLIFIER), getBool(map, AMBIENT), getBool(map, PARTICLES));
     }
 
     private static PotionEffectType getEffectType(Map<?,?> map) {
@@ -95,7 +111,8 @@ public class PotionEffect implements ConfigurationSerializable {
             TYPE, type.getId(),
             DURATION, duration,
             AMPLIFIER, amplifier,
-            AMBIENT, ambient
+            AMBIENT, ambient,
+            PARTICLES, particles
         );
     }
 
@@ -120,7 +137,7 @@ public class PotionEffect implements ConfigurationSerializable {
             return false;
         }
         PotionEffect that = (PotionEffect) obj;
-        return this.type.equals(that.type) && this.ambient == that.ambient && this.amplifier == that.amplifier && this.duration == that.duration;
+        return this.type.equals(that.type) && this.ambient == that.ambient && this.amplifier == that.amplifier && this.duration == that.duration && this.particles == that.particles;
     }
 
     /**
@@ -162,6 +179,15 @@ public class PotionEffect implements ConfigurationSerializable {
         return ambient;
     }
 
+    /**
+     * Whether or not to show potion particles.
+     *
+     * @return whether this effect shows particles
+     */
+    public boolean hasParticles() {
+        return particles;
+    }
+
     @Override
     public int hashCode() {
         int hash = 1;
@@ -169,11 +195,21 @@ public class PotionEffect implements ConfigurationSerializable {
         hash = hash * 31 + amplifier;
         hash = hash * 31 + duration;
         hash ^= 0x22222222 >> (ambient ? 1 : -1);
+        hash ^= 0x22222222 >> (particles ? 1 : -1);
         return hash;
     }
 
     @Override
     public String toString() {
-        return type.getName() + (ambient ? ":(" : ":") + duration + "t-x" + amplifier + (ambient ? ")" : "");
+        String mid = duration + "t-x" + amplifier;
+
+        String brackets = "%s";
+        if (!particles) {
+            brackets = "[%s]";
+        } else if (ambient) {
+            brackets = "(%s)";
+        }
+
+        return type.getName() + ":" + String.format(brackets, mid);
     }
 }
