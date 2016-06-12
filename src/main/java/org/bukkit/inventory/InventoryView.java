@@ -48,7 +48,30 @@ public abstract class InventoryView {
          * In an enchanting inventory, the bottom button's experience level
          * value.
          */
-        ENCHANT_BUTTON3(2, InventoryType.ENCHANTING);
+        ENCHANT_BUTTON3(2, InventoryType.ENCHANTING),
+        /**
+         * In an enchanting inventory, the first four bits of the player's xpSeed.
+         * @deprecated magic value
+         */
+        ENCHANT_XP_SEED(3, InventoryType.ENCHANTING),
+        /**
+         * In an enchanting inventory, the top button's enchantment's id and level
+         * value.
+         * @deprecated magic value
+         */
+        ENCHANT_ID_AND_LEVEL1(4, InventoryType.ENCHANTING),
+        /**
+         * In an enchanting inventory, the middle button's enchantment's id and level
+         * value.
+         * @deprecated magic value
+         */
+        ENCHANT_ID_AND_LEVEL2(5, InventoryType.ENCHANTING),
+        /**
+         * In an enchanting inventory, the bottom button's enchantment's id and level
+         * value.
+         * @deprecated magic value
+         */
+        ENCHANT_ID_AND_LEVEL3(6, InventoryType.ENCHANTING);
         int id;
         InventoryType style;
         private Property(int id, InventoryType appliesTo) {
