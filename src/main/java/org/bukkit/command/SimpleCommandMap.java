@@ -76,6 +76,7 @@ public class SimpleCommandMap implements CommandMap {
         register("bukkit", new SetWorldSpawnCommand());
         register("bukkit", new SetIdleTimeoutCommand());
         register("bukkit", new AchievementCommand());
+        register("bukkit", new TriggerCommand());
     }
 
     /**

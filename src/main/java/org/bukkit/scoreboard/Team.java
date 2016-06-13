@@ -2,6 +2,7 @@ package org.bukkit.scoreboard;
 
 import java.util.Set;
 
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.potion.PotionEffectType;
 
@@ -111,6 +112,41 @@ public interface Team {
     void setCanSeeFriendlyInvisibles(boolean enabled) throws IllegalStateException;
 
     /**
+     * Gets the name tag visibility of this team. This affects what
+     * nametags will be visible to players on the team.
+     *
+     * @return this team's nametag visibility.
+     * @throws IllegalStateException if this team has been unregistered
+     */
+    NametagVisibility getNametagVisibility() throws IllegalStateException;
+
+    /**
+     * Sets the name tag visibility of this team. This affects what
+     * nametags will be visible to players on the team.
+     *
+     * @param visibility the new nametag visibility.
+     * @throws IllegalStateException if this team has been unregistered
+     */
+    void setNametagVisibility(NametagVisibility visibility) throws IllegalStateException;
+
+    /**
+     * Gets the color of a team
+     * This is only used for the team color sidebar slots
+     * @return
+     * @throws IllegalStateException if this team has been unregistered
+     */
+    ChatColor getColor() throws IllegalStateException;
+
+    /**
+     * Sets color of a team
+     * This is only used for the team color sidebar slots
+     *
+     * @param color
+     * @throws IllegalStateException if this team has been unregistered
+     */
+    void setColor(ChatColor color) throws IllegalStateException;
+
+    /**
      * Gets the Set of players on the team
      *
      * @return players on the team
@@ -171,4 +207,21 @@ public interface Team {
      * @throws IllegalStateException if this team has been unregistered
      */
     boolean hasPlayer(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
+
+    /**
+     * Set the visiblity of death messages for players on this team.
+     *
+     * @param visibility The visiblity of death messages
+     * @throws IllegalArgumentException if the visibility is null
+     * @throws IllegalStateException if this team has been unregistered
+     */
+    void setDeathMessageVisibility(NametagVisibility visibility) throws IllegalStateException, IllegalArgumentException;
+
+    /**
+     * Get the visiblity of death messages for players on this team.
+     *
+     * @return visibility The visiblity of death messages
+     * @throws IllegalStateException if this team has been unregistered
+     */
+    NametagVisibility getDeathMessageVisibility() throws IllegalStateException;
 }

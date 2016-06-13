@@ -30,8 +30,8 @@ public class ScoreboardCommand extends VanillaCommand {
 
     private static final List<String> MAIN_CHOICES = ImmutableList.of("objectives", "players", "teams");
     private static final List<String> OBJECTIVES_CHOICES = ImmutableList.of("list", "add", "remove", "setdisplay");
-    private static final List<String> OBJECTIVES_CRITERIA = ImmutableList.of("health", "playerKillCount", "totalKillCount", "deathCount", "dummy");
-    private static final List<String> PLAYERS_CHOICES = ImmutableList.of("set", "add", "remove", "reset", "list");
+    private static final List<String> OBJECTIVES_CRITERIA = ImmutableList.of("health", "playerKillCount", "totalKillCount", "deathCount", "dummy", "trigger");
+    private static final List<String> PLAYERS_CHOICES = ImmutableList.of("set", "add", "remove", "reset", "list", "enable", "test");
     private static final List<String> TEAMS_CHOICES = ImmutableList.of("add", "remove", "join", "leave", "empty", "list", "option");
     private static final List<String> TEAMS_OPTION_CHOICES = ImmutableList.of("color", "friendlyfire", "seeFriendlyInvisibles");
     private static final Map<String, DisplaySlot> OBJECTIVES_DISPLAYSLOT = ImmutableMap.of("belowName", DisplaySlot.BELOW_NAME, "list", DisplaySlot.PLAYER_LIST, "sidebar", DisplaySlot.SIDEBAR);
@@ -42,7 +42,7 @@ public class ScoreboardCommand extends VanillaCommand {
             .put("bold", ChatColor.BOLD)
             .put("dark_aqua", ChatColor.DARK_AQUA)
             .put("dark_blue", ChatColor.DARK_BLUE)
-            .put("dark_gray",  ChatColor.DARK_GRAY)
+            .put("dark_gray", ChatColor.DARK_GRAY)
             .put("dark_green", ChatColor.DARK_GREEN)
             .put("dark_purple", ChatColor.DARK_PURPLE)
             .put("dark_red", ChatColor.DARK_RED)
@@ -102,9 +102,7 @@ public class ScoreboardCommand extends VanillaCommand {
                 String name = args[2];
                 String criteria = args[3];
 
-                if (criteria == null) {
-                    sender.sendMessage(ChatColor.RED + "Invalid objective criteria type. Valid types are: " + stringCollectionToString(OBJECTIVES_CRITERIA));
-                } else if (name.length() > 16) {
+                if (name.length() > 16) {
                     sender.sendMessage(ChatColor.RED + "The name '" + name + "' is too long for an objective, it can be at most 16 characters long");
                 } else if (mainScoreboard.getObjective(name) != null) {
                     sender.sendMessage(ChatColor.RED + "An objective with the name '" + name + "' already exists");
@@ -164,10 +162,14 @@ public class ScoreboardCommand extends VanillaCommand {
                         sender.sendMessage("Cleared objective display slot '" + slotName + "'");
                     }
                 }
+            } else {
+                sender.sendMessage(ChatColor.RED + "Usage: /scoreboard objectives <list|add|remove|setdisplay>");
+                return false;
             }
+
         } else if (args[0].equalsIgnoreCase("players")) {
             if (args.length == 1) {
-                sender.sendMessage(ChatColor.RED + "/scoreboard players <set|add|remove|reset|list>");
+                sender.sendMessage(ChatColor.RED + "Usage: /scoreboard players <set|add|remove|reset|list|enable|test> ...");
                 return false;
             }
             if (args[1].equalsIgnoreCase("set") || args[1].equalsIgnoreCase("add") || args[1].equalsIgnoreCase("remove")) {
@@ -261,10 +263,63 @@ public class ScoreboardCommand extends VanillaCommand {
                         }
                     }
                 }
+            } else if (args[1].equalsIgnoreCase("enable")) {
+                if (args.length < 4) {
+                    sender.sendMessage(ChatColor.RED + "Usage: /scoreboard players enable <player> <trigger>");
+                    return false;
+                }
+
+                Objective objective = mainScoreboard.getObjective(args[3]);
+                if (objective == null) {
+                    sender.sendMessage(ChatColor.RED + "No objective was found by the name '" + args[3] + "'");
+                    return false;
+                }
+
+                if (args[2].equalsIgnoreCase("*")) {
+                    for (String player : mainScoreboard.getEntries()) {
+                        objective.getScore(player).setLocked(false);
+                        sender.sendMessage("Enabled trigger " + args[3] + " for " + player);
+                    }
+                    return true;
+                }
+
+                objective.getScore(args[2]).setLocked(false);
+                sender.sendMessage("Enabled trigger " + args[3] + " for " + args[2]);
+                return true;
+            } else if (args[1].equalsIgnoreCase("test")) {
+                if (args.length < 5) {
+                    sender.sendMessage("Usage: /scoreboard players test <player> <objective> <min> [max]");
+                    return false;
+                }
+
+                Objective objective = mainScoreboard.getObjective(args[3]);
+                if (objective == null) {
+                    sender.sendMessage("No objective was found by the name '" + args[3] + "'");
+                    return false;
+                }
+
+                String minStr = args[4];
+                String maxStr = null;
+
+                if (args.length > 5) {
+                    maxStr = args[5];
+                }
+
+                if (args[2].equals("*")) {
+                    for (String player : objective.getEntries()) {
+                        testImpl(sender, player, objective, minStr, maxStr);
+                    }
+                    return true;
+                }
+
+                testImpl(sender, args[2], objective, minStr, maxStr);
+            } else {
+                sender.sendMessage(ChatColor.RED + "Usage: /scoreboard players <set|add|remove|reset|list|enable|test> ...");
+                return false;
             }
         } else if (args[0].equalsIgnoreCase("teams")) {
             if (args.length == 1) {
-                sender.sendMessage(ChatColor.RED + "/scoreboard teams <list|add|remove|empty|join|leave|option>");
+                sender.sendMessage(ChatColor.RED + "Usage: /scoreboard teams <list|add|remove|empty|join|leave|option>");
                 return false;
             }
             if (args[1].equalsIgnoreCase("list")) {
@@ -456,6 +511,9 @@ public class ScoreboardCommand extends VanillaCommand {
                         }
                         team.setPrefix(color.toString());
                         team.setSuffix(ChatColor.RESET.toString());
+                        if (!color.isFormat()) {
+                            team.setColor(color);
+                        }
                     } else {
                         if (!value.equals("true") && !value.equals("false")) {
                             sender.sendMessage(ChatColor.RED + "Valid values for option " + option + " are: true and false");
@@ -475,6 +533,46 @@ public class ScoreboardCommand extends VanillaCommand {
             return false;
         }
         return true;
+    }
+
+    private boolean testImpl(CommandSender sender, String player, Objective objective, String min_str, String max_str) {
+        if (!objective.hasScore(player)) {
+            sender.sendMessage(ChatColor.RED + "No " + objective.getName() + " score for " + player + " found");
+            return false;
+        }
+
+        int value = objective.getScore(player).getScore();
+        int min;
+        int max;
+
+        if (min_str.equals("*")) {
+            min = Integer.MIN_VALUE;
+        } else {
+            min = Integer.valueOf(min_str);
+        }
+
+        if (max_str != null) {
+            if (max_str.equals("*")) {
+                max = Integer.MAX_VALUE;
+            } else {
+                max = Integer.valueOf(max_str);
+            }
+        } else {
+            max = Integer.MAX_VALUE;
+        }
+
+        if (min > max) {
+            sender.sendMessage(ChatColor.RED + "The number you have entered (" + max + ") is too small, it must be at least " + min);
+            return false;
+        }
+
+        if (min <= value && value <= max) {
+            sender.sendMessage("Score " + value + " is in range " + min + " to " + max);
+            return true;
+        } else {
+            sender.sendMessage("Score " + value + " is NOT in range " + min + " to " + max);
+            return false;
+        }
     }
 
     @Override
@@ -511,7 +609,7 @@ public class ScoreboardCommand extends VanillaCommand {
                 if (args.length == 2) {
                     return StringUtil.copyPartialMatches(args[1], PLAYERS_CHOICES, new ArrayList<String>());
                 }
-                if (args[1].equalsIgnoreCase("set") || args[1].equalsIgnoreCase("add") || args[1].equalsIgnoreCase("remove")) {
+                if (args[1].equalsIgnoreCase("set") || args[1].equalsIgnoreCase("add") || args[1].equalsIgnoreCase("remove") || args[1].equalsIgnoreCase("enable") || args[1].equalsIgnoreCase("test")) {
                     if (args.length == 3) {
                         return super.tabComplete(sender, alias, args);
                     }
