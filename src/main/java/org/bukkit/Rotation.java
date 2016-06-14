@@ -4,26 +4,39 @@ package org.bukkit;
  * An enum to specify a rotation based orientation, like that on a clock.
  * <p>
  * It represents how something is viewed, as opposed to cardinal directions.
+ *
+ * @deprecated This does not handle the various degrees of rotation available
  */
+@Deprecated
 public enum Rotation {
 
     /**
      * No rotation
      */
-    NONE,
+    NONE(0),
     /**
      * Rotated clockwise by 90 degrees
      */
-    CLOCKWISE,
+    CLOCKWISE(90),
     /**
      * Flipped upside-down, a 180 degree rotation
      */
-    FLIPPED,
+    FLIPPED(180),
     /**
      * Rotated counter-clockwise by 90 degrees
      */
-    COUNTER_CLOCKWISE,
+    COUNTER_CLOCKWISE(270),
     ;
+
+    private double rotation;
+
+    private Rotation(double rotation) {
+        this.rotation = rotation;
+    }
+
+    public double getRotation() {
+        return rotation;
+    }
 
     private static final Rotation [] rotations = values();
 
