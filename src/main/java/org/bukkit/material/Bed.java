@@ -99,11 +99,7 @@ public class Bed extends MaterialData implements Directional {
             data = 0x3;
         }
 
-        if (isHeadOfBed()) {
-            data |= 0x8;
-        }
-
-        setData(data);
+        setData((byte) (getData() & ~0x3 | data));
     }
 
     /**
@@ -112,7 +108,7 @@ public class Bed extends MaterialData implements Directional {
      * @return the direction the head of the bed is facing
      */
     public BlockFace getFacing() {
-        byte data = (byte) (getData() & 0x7);
+        byte data = (byte) (getData() & 0x3);
 
         switch (data) {
         case 0x0:
