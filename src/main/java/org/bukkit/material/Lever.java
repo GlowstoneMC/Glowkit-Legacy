@@ -102,6 +102,41 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
         byte data = (byte) (getData() & 0x8);
         BlockFace attach = getAttachedFace();
 
+        if (face == BlockFace.UP) {
+            switch (attach) {
+            case NORTH:
+            case SOUTH:
+                data |= 0x5;
+                break;
+
+            case EAST:
+            case WEST:
+            default:
+                data |= 0x6;
+                break;
+
+            }
+
+            setData(data);
+            return;
+        } else if (face == BlockFace.DOWN) {
+            switch (attach) {
+            case EAST:
+            case WEST:
+                data |= 0x0;
+                break;
+
+            case NORTH:
+            case SOUTH:
+            default:
+                data |= 0x7;
+                break;
+            }
+
+            setData(data);
+            return;
+        }
+
         if (attach == BlockFace.DOWN) {
             switch (face) {
             case SOUTH:
