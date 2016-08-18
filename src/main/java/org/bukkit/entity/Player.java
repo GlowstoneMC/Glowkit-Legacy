@@ -1102,4 +1102,11 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @see Player#setHealthScaled(boolean)
      */
     public double getHealthScale();
+
+    /**
+     * Sends an action bar message to the player.
+     *
+     * @param message the message to send
+     */
+    public void sendActionBarMessage(String message);
 }
