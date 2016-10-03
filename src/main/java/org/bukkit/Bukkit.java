@@ -15,6 +15,7 @@ import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.command.RemoteConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.help.HelpMap;
@@ -513,6 +514,13 @@ public final class Bukkit {
      */
     public static ConsoleCommandSender getConsoleSender() {
         return server.getConsoleSender();
+    }
+
+    /**
+     * @see Server#getRemoteConsoleCommandSender()
+     */
+    public static RemoteConsoleCommandSender getRemoteConsoleCommandSender() {
+        return server.getRemoteConsoleCommandSender();
     }
 
     /**
