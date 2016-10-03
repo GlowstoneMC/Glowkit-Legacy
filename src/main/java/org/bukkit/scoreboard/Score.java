@@ -52,6 +52,26 @@ public interface Score {
     void setScore(int score) throws IllegalStateException;
 
     /**
+     * Gets whether or not this score is locked.
+     * This is only meaningful for objectives with the criteria {@link Criterias#TRIGGER TRIGGER}
+     *
+     * @return locked whether or not this score is locked
+     * @throws IllegalStateException if the associated objective has been
+     *     unregistered
+     */
+    boolean getLocked();
+
+    /**
+     * Sets whether or not this score is locked.
+     * This is only meaningful for objectives with the criteria {@link Criterias#TRIGGER TRIGGER}
+     *
+     * @param locked The new locked state
+     * @throws IllegalStateException if the associated objective has been
+     *     unregistered
+     */
+    void setLocked(boolean locked);
+
+    /**
      * Gets the scoreboard for the associated objective.
      *
      * @return the owning objective's scoreboard, or null if it has been
