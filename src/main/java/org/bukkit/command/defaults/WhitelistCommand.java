@@ -2,6 +2,7 @@ package org.bukkit.command.defaults;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -72,15 +73,17 @@ public class WhitelistCommand extends VanillaCommand {
                 if (badPerm(sender, "add")) return true;
 
                 OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
-
-                if (target.isWhitelisted()) {
-                    sender.sendMessage(target.getName() + " is already on the white-list");
+                if (target.getUniqueId().equals(UUID.nameUUIDFromBytes(("OfflinePlayer:" + target.getName()).getBytes()))) {
+                    Command.broadcastCommandMessage(sender, "Could not add player \""+ args[1] + "\" to the white-list");
                 } else {
-                    target.setWhitelisted(true);
+                    if (target.isWhitelisted()) {
+                        sender.sendMessage(target.getName() + " is already on the white-list");
+                    } else {
+                        target.setWhitelisted(true);
 
-                    Command.broadcastCommandMessage(sender, "Added " + args[1] + " to the white-list");
+                        Command.broadcastCommandMessage(sender, "Added " + args[1] + " to the white-list");
+                    }
                 }
-
                 return true;
             } else if (args[0].equalsIgnoreCase("remove")) {
                 if (badPerm(sender, "remove")) return true;
