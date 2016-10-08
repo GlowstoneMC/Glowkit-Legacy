@@ -1,12 +1,13 @@
 package org.bukkit.material;
 
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.matcher.Matcher;
 
 /**
  * Handles specific metadata for certain items or blocks
  */
-public class MaterialData implements Cloneable {
+public class MaterialData implements Cloneable, Matcher<MaterialData> {
     private final int type;
     private byte data = 0;
 
@@ -131,5 +132,10 @@ public class MaterialData implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new Error(e);
         }
+    }
+
+    @Override
+    public boolean matches(MaterialData object) {
+        return this.equals(object);
     }
 }

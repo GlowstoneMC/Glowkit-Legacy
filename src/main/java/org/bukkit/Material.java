@@ -8,13 +8,14 @@ import org.bukkit.map.MapView;
 import org.bukkit.material.*;
 import org.bukkit.potion.Potion;
 import org.bukkit.util.Java15Compat;
+import org.bukkit.util.matcher.Matcher;
 
 import com.google.common.collect.Maps;
 
 /**
  * An enum of all material IDs accepted by the official server and client
  */
-public enum Material {
+public enum Material implements Matcher<Material> {
     AIR(0, 0),
     STONE(1, Stone.class),
     GRASS(2),
@@ -1082,5 +1083,10 @@ public enum Material {
             default:
                 return false;
         }
+    }
+
+    @Override
+    public boolean matches(Material material) {
+        return this == material;
     }
 }
