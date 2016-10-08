@@ -107,10 +107,10 @@ public interface Damageable extends Entity {
 
     /**
      * Sets the maximum health this entity can have.
-     * <p>
+     * <p/>
      * If the health of the entity is above the value provided it will be set
      * to that value.
-     * <p>
+     * <p/>
      * Note: An entity with a health bar ({@link Player}, {@link EnderDragon},
      * {@link Wither}, etc...} will have their bar scaled accordingly.
      *
