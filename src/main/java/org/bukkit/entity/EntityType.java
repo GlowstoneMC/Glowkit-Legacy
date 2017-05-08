@@ -130,6 +130,7 @@ public enum EntityType {
     WITHER("WitherBoss", Wither.class, 64),
     BAT("Bat", Bat.class, 65),
     WITCH("Witch", Witch.class, 66),
+    ENDERMITE("Endermite", Endermite.class, 67),
     PIG("Pig", Pig.class, 90),
     SHEEP("Sheep", Sheep.class, 91),
     COW("Cow", Cow.class, 92),
