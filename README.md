@@ -6,7 +6,7 @@ some updates and additions to the Bukkit API which are useful to Glowstone.
 For a spiritual successor to the Bukkit API, see [Sponge](https://github.com/SpongePowered).
 
 Plugins designed for the original Bukkit API will continue to run on Glowstone,
-and and are likely to build against Glowkit with zero or minimal changes.
+and are likely to build against Glowkit with zero or minimal changes.
 
 Bukkit
 ------
